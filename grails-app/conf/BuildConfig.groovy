@@ -52,11 +52,13 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
         runtime "org.postgresql:postgresql:9.3-1102-jdbc41"
+
     }
 
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.70" // or ":tomcat:8.0.22"
+        compile "org.grails.plugins:rest-client-builder:2.1.1"
 
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
@@ -68,6 +70,8 @@ grails.project.dependency.resolution = {
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+
+        compile "org.grails.plugins:quartz:1.0.2"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"

@@ -3,12 +3,12 @@ package com.fhi.dsdproject
 class Node {
 
     Long id
-    String ipAdress
+    String name
+    String url
 
     Date lastDatabaseUpdate
 
-
-    Date dateCrated
+    Date dateCreated
     Date lastUpdated
 
 

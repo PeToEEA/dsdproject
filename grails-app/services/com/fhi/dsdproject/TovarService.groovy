@@ -1,11 +1,13 @@
 package com.fhi.dsdproject
 
+import grails.converters.JSON
 import grails.transaction.Transactional
 
 @Transactional
 class TovarService {
 
     def grailsApplication
+    def nodesService
 
     public Boolean delete(Long id) {
         Tovar tovar = Tovar.findById(id)
@@ -27,6 +29,7 @@ class TovarService {
             copyProps(tovar, tovarEditCmd)
             tovar.save(failOnError: true)
         }
+        nodesService.relayData((tovar as JSON) as String)
         return tovar.id
     }
 

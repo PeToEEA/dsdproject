@@ -20,6 +20,9 @@
             ID
         </td>
         <td>
+            Nazov
+        </td>
+        <td>
             IP
         </td>
         <td>
@@ -37,7 +40,10 @@
                 ${node.id}
             </td>
             <td>
-                ${node.ipAdress}
+                ${node.name}
+            </td>
+            <td>
+                ${node.url}
             </td>
             <td>
                 ${node.lastDatabaseUpdate}

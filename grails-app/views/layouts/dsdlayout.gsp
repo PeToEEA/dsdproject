@@ -17,7 +17,7 @@
     <g:layoutHead/>
 </head>
 <body>
-<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
+<div id="grailsLogo" role="banner"><a href="/dsdproject"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
 <g:link controller="tovar" action="index">Tovary</g:link> | <g:link controller="tovar" action="detail">Pridat tovar</g:link> |
 <g:link controller="nodes" action="index">Nodes</g:link> | <g:link controller="nodes" action="detail">Pridat node</g:link>
 <g:layoutBody/>

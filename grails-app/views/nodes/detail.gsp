@@ -21,7 +21,10 @@
 <h1>
     Node detail, ID: ${node?.id}
 </h1>
-<g:form controller="node" action="doEdit" params='[id: "${node?.id}"]'>
+<g:form controller="nodes" action="doEdit">
+    <g:if test="${node?.id}">
+        <g:hiddenField name="id" value="${node.id}"/>
+    </g:if>
 <table>
     <tbody>
         <tr>
@@ -34,10 +37,18 @@
         </tr>
         <tr>
             <td>
+                Name
+            </td>
+            <td>
+                <g:textField name="name" value="${node?.name}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 IP adresa
             </td>
             <td>
-                <g:textField name="ipAdress" value="${node?.ipAdress}"/>
+                <g:textField name="url" value="${node?.url}"/>
             </td>
         </tr>
         <tr>

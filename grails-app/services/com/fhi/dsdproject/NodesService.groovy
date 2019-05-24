@@ -5,6 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class NodesService {
 
+    def restAsyncPostRequestService
+
     public Boolean delete(Long id) {
         Node node = Node.findById(id)
         if(node) {
@@ -29,6 +31,14 @@ class NodesService {
     }
 
     private void copyProps(Node node, NodeEditCmd nodeEditCmd) {
-        node.ipAdress = nodeEditCmd.ipAdress
+        node.url = nodeEditCmd.url
+        node.name = nodeEditCmd.name
+    }
+
+    public void relayData(String jsonData) {
+        List<Node> nodes = Node.all
+        nodes.each { Node node ->
+            restAsyncPostRequestService.createAsyncPostRequestService(jsonData, node)
+        }
     }
 }
