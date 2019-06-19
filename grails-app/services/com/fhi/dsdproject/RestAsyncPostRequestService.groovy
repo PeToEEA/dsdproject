@@ -1,6 +1,7 @@
 package com.fhi.dsdproject
 
 import grails.plugins.rest.client.RestBuilder
+import grails.plugins.rest.client.RestResponse
 import grails.transaction.Transactional
 
 
@@ -21,7 +22,7 @@ class RestAsyncPostRequestService {
 
     public void makePostRequest(RestAsyncPostRequest restAsyncPostRequest) {
         RestBuilder rest = new RestBuilder()
-        def resp = rest.post(restAsyncPostRequest.node.url){
+        RestResponse resp = rest.post(restAsyncPostRequest.node.url){
             contentType "application/vnd.org.jfrog.artifactory.security.Group+json"
             json restAsyncPostRequest.json
         }

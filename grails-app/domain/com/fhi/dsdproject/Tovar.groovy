@@ -24,8 +24,32 @@ class Tovar {
         lastLocalUpdate nullable: true
     }
 
+
     def afterInsert() {
         this.globalId = grailsApplication.config.dsdproject.nodeName + "-" + this.id
+    }
+
+    public void createFromDto(TovarDto tovarDto) {
+        copyPropertiesFromDto(tovarDto)
+        this.save(failOnError: true)
+    }
+
+    public void updateFromDto(TovarDto tovarDto) {
+        copyPropertiesFromDto(tovarDto)
+        this.save(failOnError: true)
+    }
+
+    private void copyPropertiesFromDto(TovarDto tovarDto) {
+        this.nazov = tovarDto.nazov
+        this.vyrobca = tovarDto.vyrobca
+        this.popis = tovarDto.popis
+        this.farba = tovarDto.farba
+        this.cena = tovarDto.cena
+        this.kod = tovarDto.kod
+        this.dateCreated = tovarDto.dateCreated
+        this.lastUpdated = tovarDto.lastUpdated
+        this.lastLocalUpdate = tovarDto.lastLocalUpdate
+        this.globalVersion = tovarDto.globalVersion
     }
 
 }
