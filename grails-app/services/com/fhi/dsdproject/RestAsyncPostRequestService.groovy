@@ -30,13 +30,13 @@ class RestAsyncPostRequestService {
         restAsyncPostRequest.save(failOnError: true)
     }
 
-    public Boolean makePostRequest(String json,  Node node) {
+    public Boolean makePostRequest(String jsonData,  Node node) {
         RestBuilder rest = new RestBuilder()
-        log.info("Going to send request to ${node.url} with json data:\n${json}\n")
+        log.info("Going to send request to ${node.url} with json data:\n${jsonData}\n")
 
         RestResponse resp = rest.post(node.url){
             contentType 'application/json'
-            json new JsonSlurper().parseText(json)
+            json new JsonSlurper().parseText(jsonData)
         }
 
         log.info("Response: " + resp)
