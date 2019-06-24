@@ -23,5 +23,6 @@ class RestAsyncPostRequest {
     public RestAsyncPostRequest(String jsonData, Node node) {
         this.json = jsonData
         this.node = node
+        this.lastRelayAttempt = new Date()
     }
 }

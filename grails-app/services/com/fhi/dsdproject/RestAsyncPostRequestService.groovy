@@ -22,11 +22,12 @@ class RestAsyncPostRequestService {
     }
 
     public void makePostRequest(RestAsyncPostRequest restAsyncPostRequest) {
+        restAsyncPostRequest.lastRelayAttempt = new Date()
         Boolean success = makePostRequest(restAsyncPostRequest.json, restAsyncPostRequest.node)
         if(success) {
             restAsyncPostRequest.acceptTime = new Date()
-            restAsyncPostRequest.save(failOnError: true)
         }
+        restAsyncPostRequest.save(failOnError: true)
     }
 
     public Boolean makePostRequest(String json,  Node node) {
