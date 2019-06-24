@@ -38,6 +38,13 @@ class NodesService {
     public void relayData(String jsonData) {
         List<Node> nodes = Node.all
         nodes.each { Node node ->
+            relayDataToNode(jsonData, node)
+        }
+    }
+
+    public void relayDataToNode(String jsonData, Node node) {
+        Boolean success = restAsyncPostRequestService.makePostRequest(jsonData, node)
+        if(!success) {
             restAsyncPostRequestService.createAsyncPostRequestService(jsonData, node)
         }
     }

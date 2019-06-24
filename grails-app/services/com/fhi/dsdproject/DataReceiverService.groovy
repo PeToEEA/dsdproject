@@ -22,10 +22,12 @@ class DataReceiverService {
     public TovarDto mapJsonToDto(def jsonData) {
         TovarDto tovarDto = new TovarDto()
         tovarDto.id = jsonData.id
+        tovarDto.nazov = jsonData.nazov
         tovarDto.kod = jsonData.kod
         tovarDto.cena = jsonData.cena
         tovarDto.farba = jsonData.farba
         tovarDto.globalId = jsonData.globalId
+        tovarDto.globalVersion = jsonData.globalVersion
         tovarDto.popis = jsonData.popis
         tovarDto.vyrobca = jsonData.vyrobca
         tovarDto.dateCreated = dateFormat.parse(jsonData.dateCreated as String)

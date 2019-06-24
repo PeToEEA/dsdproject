@@ -22,18 +22,26 @@ class RestAsyncPostRequestService {
     }
 
     public void makePostRequest(RestAsyncPostRequest restAsyncPostRequest) {
-        RestBuilder rest = new RestBuilder()
-        log.info("Going to send request to ${restAsyncPostRequest.node.url} with json data:\n${restAsyncPostRequest.json}\n")
+        Boolean success = makePostRequest(restAsyncPostRequest.json, restAsyncPostRequest.node)
+        if(success) {
+            restAsyncPostRequest.acceptTime = new Date()
+            restAsyncPostRequest.save(failOnError: true)
+        }
+    }
 
-        RestResponse resp = rest.post(restAsyncPostRequest.node.url){
+    public Boolean makePostRequest(String json,  Node node) {
+        RestBuilder rest = new RestBuilder()
+        log.info("Going to send request to ${node.url} with json data:\n${json}\n")
+
+        RestResponse resp = rest.post(node.url){
             contentType 'application/json'
-            json new JsonSlurper().parseText(restAsyncPostRequest.json)
+            json new JsonSlurper().parseText(json)
         }
 
         log.info("Response: " + resp)
         if(resp.getStatus() == 200) {
-            restAsyncPostRequest.acceptTime = new Date()
-            restAsyncPostRequest.save(failOnError: true)
+            return true
         }
+        return false
     }
 }
