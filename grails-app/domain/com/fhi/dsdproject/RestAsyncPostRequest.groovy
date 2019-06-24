@@ -13,6 +13,7 @@ class RestAsyncPostRequest {
 
     Node node
     String json
+    String action
 
     static constraints = {
         lastRelayAttempt nullable: true
@@ -20,7 +21,8 @@ class RestAsyncPostRequest {
         json maxSize: 32768
     }
 
-    public RestAsyncPostRequest(String jsonData, Node node) {
+    public RestAsyncPostRequest(String jsonData, Node node, String action) {
+        this.action = action
         this.json = jsonData
         this.node = node
         this.lastRelayAttempt = new Date()

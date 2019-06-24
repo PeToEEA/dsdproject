@@ -10,7 +10,7 @@ class TestController {
 
 
     def testAsyncExecutor() {
-        restAsyncPostRequestService.sendRequests()
+        //restAsyncPostRequestService.sendRequests()
         render "OK"
     }
 

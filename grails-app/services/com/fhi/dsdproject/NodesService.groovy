@@ -35,17 +35,17 @@ class NodesService {
         node.name = nodeEditCmd.name
     }
 
-    public void relayData(String jsonData) {
+    public void relayData(String jsonData, String action) {
         List<Node> nodes = Node.all
         nodes.each { Node node ->
-            relayDataToNode(jsonData, node)
+            relayDataToNode(jsonData, node, action)
         }
     }
 
-    public void relayDataToNode(String jsonData, Node node) {
-        Boolean success = restAsyncPostRequestService.makePostRequest(jsonData, node)
+    public void relayDataToNode(String jsonData, Node node, String action) {
+        Boolean success = restAsyncPostRequestService.makePostRequest(jsonData, node, action)
         if(!success) {
-            restAsyncPostRequestService.createAsyncPostRequestService(jsonData, node)
+            restAsyncPostRequestService.createAsyncPostRequestService(jsonData, node, action)
         }
     }
 }

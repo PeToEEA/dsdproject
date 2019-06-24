@@ -9,8 +9,8 @@ import groovy.json.JsonSlurper
 @Transactional
 class RestAsyncPostRequestService {
 
-    public void createAsyncPostRequestService(String jsonData, Node node) {
-        RestAsyncPostRequest restAsyncPostRequest = new RestAsyncPostRequest(jsonData, node)
+    public void createAsyncPostRequestService(String jsonData, Node node, String action) {
+        RestAsyncPostRequest restAsyncPostRequest = new RestAsyncPostRequest(jsonData, node, action)
         restAsyncPostRequest.save(failOnError: true)
     }
 
@@ -23,16 +23,16 @@ class RestAsyncPostRequestService {
 
     public void makePostRequest(RestAsyncPostRequest restAsyncPostRequest) {
         restAsyncPostRequest.lastRelayAttempt = new Date()
-        Boolean success = makePostRequest(restAsyncPostRequest.json, restAsyncPostRequest.node)
+        Boolean success = makePostRequest(restAsyncPostRequest.json, restAsyncPostRequest.node, restAsyncPostRequest.action)
         if(success) {
             restAsyncPostRequest.acceptTime = new Date()
         }
         restAsyncPostRequest.save(failOnError: true)
     }
 
-    public Boolean makePostRequest(String jsonData,  Node node) {
+    public Boolean makePostRequest(String jsonData,  Node node, String action) {
         RestBuilder rest = new RestBuilder()
-        log.info("Going to send request to ${node.url} with json data:\n${jsonData}\n")
+        log.info("Going to send request to ${node.url+action} with json data:\n${jsonData}\n")
 
         try {
 

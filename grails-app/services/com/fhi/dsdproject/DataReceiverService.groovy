@@ -44,5 +44,20 @@ class DataReceiverService {
             tovar = new Tovar()
             tovar.createFromDto(tovarDto)
         }
+        return tovar
+    }
+
+    public void processDelete(String jsonString) {
+        JsonSlurper jsonSlurper = new JsonSlurper()
+        def jsonData = jsonSlurper.parseText(jsonString).target
+        if(jsonData.getAt("class") == "com.fhi.dsdproject.Tovar") {
+            String globalId = jsonData.getAt("globalId")
+            Tovar tovar = Tovar.findByGlobalId(globalId)
+            if(tovar) {
+                tovar.delete()
+            } else {
+                log.warn("Ziadny tovar pre globalId $globalId")
+            }
+        }
     }
 }

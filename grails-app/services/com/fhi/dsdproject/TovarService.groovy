@@ -13,6 +13,7 @@ class TovarService {
         Tovar tovar = Tovar.findById(id)
         if(tovar) {
             tovar.delete()
+            nodesService.relayData((tovar.toMap() as JSON) as String, GlobalStrings.ACTION_DELETE)
             return true
         }
         return false
@@ -29,7 +30,7 @@ class TovarService {
             copyProps(tovar, tovarEditCmd)
             tovar.save(failOnError: true)
         }
-        nodesService.relayData((tovar.toMap() as JSON) as String)
+        nodesService.relayData((tovar.toMap() as JSON) as String, GlobalStrings.ACTION_INPUT)
         return tovar.id
     }
 

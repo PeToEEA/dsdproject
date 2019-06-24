@@ -39,6 +39,9 @@ class Tovar {
     }
 
     public void updateFromDto(TovarDto tovarDto) {
+        if(tovarDto.globalVersion == this.globalVersion) {
+            return
+        }
         copyPropertiesFromDto(tovarDto)
         this.save(failOnError: true)
     }
