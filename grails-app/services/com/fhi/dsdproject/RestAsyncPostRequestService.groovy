@@ -34,15 +34,19 @@ class RestAsyncPostRequestService {
         RestBuilder rest = new RestBuilder()
         log.info("Going to send request to ${node.url} with json data:\n${jsonData}\n")
 
-        RestResponse resp = rest.post(node.url){
-            contentType 'application/json'
-            json new JsonSlurper().parseText(jsonData)
-        }
+        try {
 
-        log.info("Response: " + resp)
-        if(resp.getStatus() == 200) {
-            return true
+            RestResponse resp = rest.post(node.url) {
+                contentType 'application/json'
+                json new JsonSlurper().parseText(jsonData)
+            }
+            log.info("Response: " + resp)
+            if(resp.getStatus() == 200) {
+                return true
+            }
+            return false
+        } catch(Exception e) {
+            return false
         }
-        return false
     }
 }
