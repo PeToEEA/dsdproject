@@ -30,7 +30,9 @@ class Tovar {
 
 
     def afterInsert() {
-        this.globalId = grailsApplication.config.dsdproject.nodeName + "-" + this.id
+        if(!this.globalId) {
+            this.globalId = grailsApplication.config.dsdproject.nodeName + "-" + this.id
+        }
     }
 
     public void createFromDto(TovarDto tovarDto) {
