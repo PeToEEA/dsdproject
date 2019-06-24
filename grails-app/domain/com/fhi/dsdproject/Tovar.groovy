@@ -56,6 +56,7 @@ class Tovar {
         this.dateCreated = tovarDto.dateCreated
         this.lastUpdated = tovarDto.lastUpdated
         this.lastLocalUpdate = tovarDto.lastLocalUpdate
+        this.globalId = tovarDto.globalId
         this.globalVersion = tovarDto.globalVersion
     }
 

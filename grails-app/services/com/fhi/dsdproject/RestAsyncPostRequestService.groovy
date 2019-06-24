@@ -36,7 +36,7 @@ class RestAsyncPostRequestService {
 
         try {
 
-            RestResponse resp = rest.post(node.url) {
+            RestResponse resp = rest.post(node.url + action) {
                 contentType 'application/json'
                 json new JsonSlurper().parseText(jsonData)
             }

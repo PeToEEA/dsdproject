@@ -11,8 +11,8 @@ class BootStrap {
     }
 
     public void initTovar() {
-        for(int i=0;i<1;i++) {
-            addTovar("test" + i)
+        for(int i=0;i<0;i++) {
+            //addTovar("test" + i)
         }
     }
 
