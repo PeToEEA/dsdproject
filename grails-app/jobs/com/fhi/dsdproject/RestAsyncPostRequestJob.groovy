@@ -5,7 +5,7 @@ public class RestAsyncPostRequestJob {
 	def restAsyncPostRequestService
 
 	static triggers = {
-		simple repeatInterval: 1000 * 30
+		simple repeatInterval: 1000 * 15
 	}
 
 	void execute() {

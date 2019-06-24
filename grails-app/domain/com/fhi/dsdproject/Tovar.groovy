@@ -1,6 +1,10 @@
 package com.fhi.dsdproject
 
+import java.text.SimpleDateFormat
+
 class Tovar {
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.SSSS")
 
     def grailsApplication
 
@@ -50,6 +54,24 @@ class Tovar {
         this.lastUpdated = tovarDto.lastUpdated
         this.lastLocalUpdate = tovarDto.lastLocalUpdate
         this.globalVersion = tovarDto.globalVersion
+    }
+
+    public Map<String,Object> toMap() {
+        return [
+                id: this.id,
+                class: this.class,
+                globalId: this.globalId,
+                nazov: this.nazov,
+                vyrobca: this.vyrobca,
+                popis: this.popis,
+                farba: this.farba,
+                cena: this.cena,
+                kod: this.kod,
+                dateCreated: dateFormat.format(this.dateCreated),
+                lastUpdated: dateFormat.format(this.lastUpdated),
+                lastLocalUpdate: dateFormat.format(this.lastLocalUpdate),
+                globalVersion: this.globalVersion
+        ]
     }
 
 }

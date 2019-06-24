@@ -9,17 +9,13 @@ class RestAsyncPostRequest {
     Date lastUpdated
 
     Date lastRelayAttempt = null
-    Date nextAttempt = null
     Date acceptTime = null
 
     Node node
     String json
 
-    Integer attemptsRemaining = 10
-
     static constraints = {
         lastRelayAttempt nullable: true
-        nextAttempt nullable: true
         acceptTime nullable: true
         json maxSize: 32768
     }

@@ -3,12 +3,16 @@ package com.fhi.dsdproject
 import grails.transaction.Transactional
 import groovy.json.JsonSlurper
 
+import java.text.SimpleDateFormat
+
 @Transactional
 class DataReceiverService {
 
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.SSSS")
+
     public void process(String jsonString) {
         JsonSlurper jsonSlurper = new JsonSlurper()
-        def jsonData = jsonSlurper.parseText(jsonString)
+        def jsonData = jsonSlurper.parseText(jsonString).target
         if(jsonData.getAt("class") == "com.fhi.dsdproject.Tovar") {
             TovarDto tovarDto = mapJsonToDto(jsonData)
             updateOrCreateNewTovar(tovarDto)
@@ -24,9 +28,9 @@ class DataReceiverService {
         tovarDto.globalId = jsonData.globalId
         tovarDto.popis = jsonData.popis
         tovarDto.vyrobca = jsonData.vyrobca
-        tovarDto.dateCreated = jsonData.dateCreated
-        tovarDto.lastUpdated = jsonData.lastUpdated
-        tovarDto.lastLocalUpdate = jsonData.lastLocalUpdate
+        tovarDto.dateCreated = dateFormat.parse(jsonData.dateCreated as String)
+        tovarDto.lastUpdated = dateFormat.parse(jsonData.lastUpdated as String)
+        tovarDto.lastLocalUpdate = dateFormat.parse(jsonData.lastLocalUpdate as String)
         return tovarDto
     }
 

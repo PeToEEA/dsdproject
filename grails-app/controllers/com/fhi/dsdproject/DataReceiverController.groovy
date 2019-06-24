@@ -7,7 +7,8 @@ class DataReceiverController {
     def index() { }
 
     def input() {
-        String json = request.getJSON()
+        String json = request.reader.text
+        log.info("Received json:\n${json}\n")
         dataReceiverService.process(json)
         render status: 200, text: 'OK'
     }

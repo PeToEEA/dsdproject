@@ -29,7 +29,7 @@ class TovarService {
             copyProps(tovar, tovarEditCmd)
             tovar.save(failOnError: true)
         }
-        nodesService.relayData((tovar as JSON) as String)
+        nodesService.relayData((tovar.toMap() as JSON) as String)
         return tovar.id
     }
 

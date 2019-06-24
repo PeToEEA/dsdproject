@@ -80,7 +80,7 @@
                 <g:textField name="kod" value="${tovar?.kod}"/>
             </td>
             <td>
-                last local updare
+                last local update
             </td>
             <td>
                 ${tovar?.lastLocalUpdate}
