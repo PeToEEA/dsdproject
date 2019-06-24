@@ -12,8 +12,8 @@ class TovarService {
     public Boolean delete(Long id) {
         Tovar tovar = Tovar.findById(id)
         if(tovar) {
-            tovar.delete()
             nodesService.relayData((tovar.toMap() as JSON) as String, GlobalStrings.ACTION_DELETE)
+            tovar.delete()
             return true
         }
         return false
