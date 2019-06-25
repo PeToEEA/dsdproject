@@ -1,5 +1,10 @@
 package com.fhi.dsdproject
 
+/**
+ * Kontroler na spravovanie tovarov.
+ *
+ * **/
+
 class TovarController {
 
     def tovarService

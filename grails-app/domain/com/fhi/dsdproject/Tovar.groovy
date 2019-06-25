@@ -2,6 +2,12 @@ package com.fhi.dsdproject
 
 import java.text.SimpleDateFormat
 
+/**
+ * ORM Entita
+ * Reprezentuje zaznam o tovare.
+ *
+ **/
+
 class Tovar {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.SSSS")
@@ -61,6 +67,13 @@ class Tovar {
         this.globalId = tovarDto.globalId
         this.globalVersion = tovarDto.globalVersion
     }
+
+    /**
+     *
+     *  Tato medoda sluzi na na prevedenie potrebnych atributov tovaru do mapy ktora sa
+     *  nasledne serializuje do JSON objektu.
+     *
+     * **/
 
     public Map<String,Object> toMap() {
         return [

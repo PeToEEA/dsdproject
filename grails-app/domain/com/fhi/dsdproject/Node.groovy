@@ -1,5 +1,11 @@
 package com.fhi.dsdproject
 
+/**
+* ORM Entita
+* Reprezentuje zaznam o uzle.
+*
+**/
+
 class Node {
 
     Long id

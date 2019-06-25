@@ -121,4 +121,5 @@ log4j = {
     }
 }
 
+// nazov tohto uzla
 dsdproject.nodeName = 'nodeA'

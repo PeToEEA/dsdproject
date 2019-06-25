@@ -1,5 +1,13 @@
 package com.fhi.dsdproject
 
+/**
+ * ORM Entita
+ * Reprezentuje zaznam o poziadavke na iny uzol ktora nemohla byt prijata.
+ * Nasledne ju RestAsyncPostRequestJob skusa poziadavku tuto ulozenu znova odosielat
+ * v pravidelnych intervaloch kym ju dany uzol neprijme.
+ *
+ **/
+
 class RestAsyncPostRequest {
 
     Long id
