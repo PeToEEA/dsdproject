@@ -9,6 +9,12 @@ class TovarService {
     def grailsApplication
     def nodesService
 
+    /**
+     * Metóda na zmazanie záznamu o tovare
+     * vyvolaná lokálne užívateľom tohto uzla
+     *
+     * **/
+
     public Boolean delete(Long id) {
         Tovar tovar = Tovar.findById(id)
         if(tovar) {
@@ -18,6 +24,12 @@ class TovarService {
         }
         return false
     }
+
+    /**
+     * Metóda na úpravu alebo vytvorenie záznamu o tovare
+     * vyvolaná lokálne užívateľom tohto uzla
+     *
+     * **/
 
     public Long edit(TovarEditCmd tovarEditCmd) {
         Tovar tovar = null
@@ -33,6 +45,12 @@ class TovarService {
         nodesService.relayData((tovar.toMap() as JSON) as String, GlobalStrings.ACTION_INPUT)
         return tovar.id
     }
+
+    /**
+     * Metóda na preklopenie atribútov z
+     * command objektu do entity
+     *
+     * **/
 
     private void copyProps(Tovar tovar, TovarEditCmd tovarEditCmd) {
         tovar.nazov = tovarEditCmd.nazov

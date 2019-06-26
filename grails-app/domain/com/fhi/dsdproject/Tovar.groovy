@@ -14,8 +14,18 @@ class Tovar {
 
     def grailsApplication
 
+    /**
+     * id - lokalne id zaznamu v databaze
+     *
+     * **/
     Long id
-    String globalId // unique global identifier
+
+    /**
+    * globalId - unikatne globalne ID pre celu siet
+     *         - prideli ho ten uzol ktory dany zaznam vytvara v tvare {nazov uzla}-{lokalne id}
+    * **/
+    String globalId
+
     String nazov
     String vyrobca
     String popis
@@ -27,6 +37,15 @@ class Tovar {
     Date lastUpdated
 
     Date lastLocalUpdate
+
+
+    /**
+     *
+     * globalVersion - verzia záznamu, začína od 0 pri vytvorení zaznamu
+     *               - následne sa dvíha o 1 pri každej úprave záznamu
+     *               - pričom verziu dvíha ten uzol ktorý vykonáva zmeny
+     *
+     * **/
     Long globalVersion = 0
 
     static constraints = {
@@ -34,6 +53,12 @@ class Tovar {
         lastLocalUpdate nullable: true
     }
 
+    /**
+     * metóda ktorá pridelí globálne id pri vytvorení záznamu
+     * pozn. vo frameworku grails ktorý tu je použitý sa metóda afterInsert, ak je špecifikovaná
+     * vykoná pred zápisom do databázy ale už je pridelené lokálne id z databá&y ktoré potrebné
+     *
+     * **/
 
     def afterInsert() {
         if(!this.globalId) {
@@ -54,6 +79,12 @@ class Tovar {
         this.save(failOnError: true)
     }
 
+
+    /**
+     * funkcia na prekopírovanie dát z transfer objektu do entity
+     *
+     * **/
+
     private void copyPropertiesFromDto(TovarDto tovarDto) {
         this.nazov = tovarDto.nazov
         this.vyrobca = tovarDto.vyrobca
@@ -70,8 +101,8 @@ class Tovar {
 
     /**
      *
-     *  Tato medoda sluzi na na prevedenie potrebnych atributov tovaru do mapy ktora sa
-     *  nasledne serializuje do JSON objektu.
+     *  Táto metóda slúži na na prevedenie potrebných atribútov tovaru do mapy ktorá sa
+     *  následne serializuje do JSON objektu.
      *
      * **/
 

@@ -15,6 +15,9 @@ hibernate {
 }
 
 // environment specific settings
+
+
+// nastevenie pripojenia pre databazu
 environments {
     development {
         dataSource {

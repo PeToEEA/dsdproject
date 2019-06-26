@@ -10,6 +10,12 @@ class DataReceiverService {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.SSSS")
 
+    /**
+     * Metóda ktorí prevedie teztový JSON na objekt ktorý
+     * obsahuje dáta o tovare zaslané z iného uzla
+     *
+     * **/
+
     public void process(String jsonString) {
         JsonSlurper jsonSlurper = new JsonSlurper()
         def jsonData = jsonSlurper.parseText(jsonString).target
@@ -36,6 +42,13 @@ class DataReceiverService {
         return tovarDto
     }
 
+
+    /**
+     * Metóda ktorá na základe globalId overí či záznam už existuje a podľa
+     * toho ho buď upraví alebo vytvorí nový záznam
+     *
+     * **/
+
     public Tovar updateOrCreateNewTovar(TovarDto tovarDto) {
         Tovar tovar = Tovar.findByGlobalId(tovarDto.globalId)
         if(tovar) {
@@ -46,6 +59,13 @@ class DataReceiverService {
         }
         return tovar
     }
+
+    /**
+     * Metóda na zmazanie záznamu, podľa globalId overí
+     * existenciu záznamu a zmaže ho
+     *
+     * **/
+
 
     public void processDelete(String jsonString) {
         JsonSlurper jsonSlurper = new JsonSlurper()

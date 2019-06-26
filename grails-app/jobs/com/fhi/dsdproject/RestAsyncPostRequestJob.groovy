@@ -1,5 +1,12 @@
 package com.fhi.dsdproject
 
+/**
+ *  Periodicky vykonávaný "job" ktorý sa stará o to aby
+ *  sa znovu skúšali zaslať neúspešné požiadavky na iné uzly
+ *
+ * **/
+
+
 public class RestAsyncPostRequestJob {
 
 	def restAsyncPostRequestService
